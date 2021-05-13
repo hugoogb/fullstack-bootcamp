@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Mensaje from './Mensaje.js'
 
-function App() {
+const Concat = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='Concat'>
+      <p>El resultado de la concatenación es: </p>
+      {props.a + props.b}
     </div>
-  );
+  )
 }
 
-export default App;
+const App = () => {
+  const mensaje = 'Hola Mundo'
+
+  return (
+    <div className='App'>
+      <h1>{mensaje}</h1>
+      <Mensaje
+        color='orange'
+        message='Estamos trabajando en un curso de React bootstrap'
+      />
+      <Concat a='2' b='3' />
+    </div>
+  )
+}
+
+export default App
