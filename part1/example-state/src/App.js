@@ -59,11 +59,13 @@ const ListOfClicks = ({ clicks }) => {
   return <p>{clicks.join(', ')}</p>
 }
 
+/*
 const INITIAL_COUNTER_STATE = {
   left: 0,
   right: 0,
   message: 'Message on state',
 }
+*/
 
 const App = () => {
   //const [left, setLeft] = useState(0)
