@@ -21,7 +21,7 @@ const Statistic = ({ text, value }) => {
 }
 
 const Statistics = (props) => {
-  const average = props.total / 3
+  const average = (props.good - props.bad) / props.total
   const positive = (props.good * 100) / props.total
 
   return (
