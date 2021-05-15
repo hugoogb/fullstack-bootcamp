@@ -59,43 +59,55 @@ const ListOfClicks = ({ clicks }) => {
   return <p>{clicks.join(', ')}</p>
 }
 
+const INITIAL_COUNTER_STATE = {
+  left: 0,
+  right: 0,
+  message: 'Message on state',
+}
+
 const App = () => {
   //const [left, setLeft] = useState(0)
   //const [right, setRight] = useState(0)
 
-  const [counters, setCounters] = useState({
-    left: 0,
-    right: 0,
-    message: 'Message on state',
-  })
+  //const [counters, setCounters] = useState(INITIAL_COUNTER_STATE)
 
   const [clicks, setClicks] = useState([])
 
   const handleClickLeft = () => {
-    setCounters({
-      ...counters,
-      left: counters.left + 1,
-    })
+    //setCounters({
+    //...counters,
+    //left: counters.left + 1,
+    //})
     setClicks((prevClicks) => [...prevClicks, 'L'])
   }
 
   const handleClickRight = () => {
-    const newCountersState = {
-      ...counters,
-      right: counters.right + 1,
-    }
-    setCounters(newCountersState)
+    //const newCountersState = {
+    //...counters,
+    //right: counters.right + 1,
+    //}
+    //setCounters(newCountersState)
     setClicks((prevClicks) => {
       return [...prevClicks, 'R']
     })
   }
+  const handleClickReset = () => {
+    //setCounters(INITIAL_COUNTER_STATE)
+    setClicks([])
+  }
+
+  const leftClicks = clicks.filter((click) => click === 'L')
+  const rightClicks = clicks.filter((click) => click === 'R')
 
   return (
     <div>
-      {counters.left}
+      {leftClicks.length}
       <button onClick={handleClickLeft}>left</button>
       <button onClick={handleClickRight}>right</button>
-      {counters.right}
+      {rightClicks.length}
+      <p>
+        <button onClick={handleClickReset}>reset</button>
+      </p>
       <p>Total clicks: {clicks.length}</p>
       {clicks.length === 0 ? (
         <WarningNotUsed />
