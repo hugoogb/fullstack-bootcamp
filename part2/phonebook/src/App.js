@@ -1,45 +1,35 @@
 import './styles.css'
 import React, { useState } from 'react'
+import { Filter } from './components/Filter.js'
+import { PersonForm } from './components/PersonForm.js'
+import { Persons } from './components/Persons.js'
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: 'Arto Hellas' }])
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' },
+  ])
   const [newName, setNewName] = useState('')
-
-  const handleChange = (event) => {
-    setNewName(event.target.value)
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(newName)
-
-    const personAddToState = {
-      id: newName,
-    }
-
-    console.log(personAddToState)
-
-    setPersons([...persons, personAddToState])
-    setNewName('')
-  }
+  const [newNumber, setNewNumber] = useState('')
+  const [filter, setFilter] = useState('')
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          Name: <input type='text' onChange={handleChange} value={newName} />
-        </div>
-        <div>
-          <button type='submit'>add</button>
-        </div>
-      </form>
+      <Filter filter={filter} setFilter={setFilter} />
+      <h2>Add new phone</h2>
+      <PersonForm
+        persons={persons}
+        setPersons={setPersons}
+        newName={newName}
+        setNewName={setNewName}
+        newNumber={newNumber}
+        setNewNumber={setNewNumber}
+      />
       <h2>Numbers</h2>
-      <p>
-        {persons.map((person) => {
-          return <p>person.id</p>
-        })}
-      </p>
+      <Persons persons={persons} filter={filter} />
     </div>
   )
 }
